@@ -1,0 +1,25 @@
+{% extends 'app_play/base.html' %}
+{% load static %}
+
+{% block title %} 
+Cineplay | PeliculaFormulario
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-4">
+        
+            <form action="" method="POST">
+            {% csrf_token %}
+
+            {{formulario_pelicula_html.as_p}}
+
+            <button type="submit" class="btn btn-primary w-100">Agregar Pelicula</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

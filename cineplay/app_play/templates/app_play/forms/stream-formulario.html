@@ -1,0 +1,31 @@
+{% extends 'app_play/base.html' %}
+{% load static %}
+
+{% block title %} 
+Cineplay | StreamFormulario
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <h2 class="text-center mb-4">Agregar Stream</h2>
+            <form action="" method="POST">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    {{ formulario_stream_html.nombre }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="url" class="form-label">URL</label>
+                    {{ formulario_stream_html.url }}
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Agregar Stream</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

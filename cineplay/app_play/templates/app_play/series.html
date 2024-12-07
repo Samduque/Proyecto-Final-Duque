@@ -1,0 +1,53 @@
+{% extends "app_play/base.html" %}
+
+{% block title %}
+Cineplay | Series
+{% endblock %}
+
+{% block content %} 
+
+    <h1 class="text-center my-4">Series</h1>
+
+
+<h2 class="text-center mt-2">Buscar serie</h2>
+<!-- Formulario de búsqueda -->
+<div class="d-flex justify-content-center mb-4">
+    <form method="GET" action="{% url 'series' %}">
+        <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Buscar serie...">
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
+
+{% if series %}
+<div class="container">
+    <!-- Hacemos la tabla responsiva -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-sm text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Título</th>
+                    <th>Género</th>
+                    <th>Temporadas</th>
+                    <th>Vistas</th>
+                    <th>Stream</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for serie in series %}
+                <tr class="table-secondary">
+                    <td>{{ serie.titulo }}</td>
+                    <td>{{ serie.genero }}</td>
+                    <td>{{ serie.temporadas }}</td>
+                    <td>{{ serie.vistas }}</td>
+                    <td>{{ serie.stream.nombre }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<p class="text-center">No se encontraron series.</p>
+{% endif %}
+{% endblock  %}
