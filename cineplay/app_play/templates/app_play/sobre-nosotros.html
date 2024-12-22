@@ -1,0 +1,81 @@
+{% extends "app_play/base.html" %}
+{% load static %}
+
+{% block title %}
+Cineplay | Sobre Nosotros 🎥
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-5 display-4 text-primary">Sobre Nosotros</h1>
+
+    
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-light rounded p-4">
+                <div class="card-body">
+                    <h2 class="card-title text-dark">Nuestra Historia</h2>
+                    <p class="card-text lead">
+                        Cineplay nació de nuestra pasión por el cine y las series, y de una necesidad compartida por muchos: encontrar recomendaciones claras y saber en qué plataformas de streaming están disponibles. 
+                        Tras numerosas búsquedas infructuosas, decidimos crear un espacio para resolver esta falencia, un blog dedicado a los verdaderos fanáticos que buscan disfrutar del mejor contenido audiovisual sin complicaciones.
+                    </p>
+                    <p class="card-text">
+                        Este proyecto es el resultado del entusiasmo de <strong>Samanta Duque</strong>, una cinéfila de corazón, quien, con el apoyo de amigos y familiares, se dedica a investigar, sintetizar y recomendar las mejores opciones para que siempre encuentres qué ver.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'app_play/assets/img/claqueta-de-cine.jpg' %}" alt="Cineplay - Historia" class="img-fluid rounded shadow-lg">
+        </div>
+    </div>
+
+    
+    <div class="row mb-4">
+        <div class="col-md-6 order-md-2">
+            <div class="card shadow-lg border-light rounded p-4">
+                <div class="card-body">
+                    <h2 class="card-title text-dark">Nuestra Trayectoria</h2>
+                    <p class="card-text lead">
+                        <strong>Samanta Duque</strong>, fundadora de Cineplay, ha convertido su amor por el cine y las series en un lugar de referencia para los amantes del contenido audiovisual. 
+                        Con una vida entera dedicada a explorar todos los géneros, desde clásicos hasta las últimas tendencias, su experiencia y pasión son la base que sostiene a Cineplay.
+                    </p>
+                    <p class="card-text">
+                        A pesar de ser un proyecto reciente, Cineplay cuenta con un sólido respaldo construido por años de exploración y aprendizaje. 
+                        Cada recomendación está diseñada para facilitar la búsqueda de contenido de calidad, pensando en las necesidades de los espectadores de hoy.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="{% static 'app_play/assets/img/cinefila.jpg' %}" alt="Equipo Cineplay" class="img-fluid rounded shadow-lg">
+        </div>
+    </div>
+
+    <div class="card shadow-lg border-light rounded p-5 mb-4">
+        <div class="card-body">
+            <h2 class="card-title text-dark">Nuestra Misión y Visión</h2>
+            <p class="card-text lead">
+                En Cineplay, nuestra misión es ayudar a los amantes del cine y las series a descubrir las mejores opciones de entretenimiento, 
+                ofreciendo recomendaciones cuidadosas y detallando en qué plataformas de streaming están disponibles.
+            </p>
+            <p class="card-text lead">
+                Nuestra visión es convertirnos en el blog de referencia para aquellos que buscan contenido de calidad, 
+                actualizándonos constantemente con las últimas tendencias y ofreciendo una experiencia sencilla y agradable para nuestros usuarios.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5 text-center">
+    <div class="col-md-12">
+        <h3>Descubrí, explorá y compartí tu amor por el cine con <span class="text-primary">Cineplay</span></h3>
+        <p class="text-muted">
+            ¡Unite a nuestra comunidad y nunca te pierdas una buena historia!
+        </p>
+        <a href="{% url 'registro' %}" class="btn btn-primary btn-lg">Registrarme</a>
+    </div>
+</div>
+</div>
+
+{% endblock %}

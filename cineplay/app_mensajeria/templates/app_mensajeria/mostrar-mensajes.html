@@ -1,0 +1,39 @@
+{% extends "app_play/base.html" %}
+{% load static %}
+
+{% block title %}
+Cineplay | Mis Mensajes 💬
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <h2 class="text-center mb-4">Mis Mensajes</h2>
+
+            {% for mensaje in mensajes %}
+                <div class="card my-3 shadow-sm">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between">
+                        <span>{{ mensaje.remitente }}</span>
+                        <small>{{ mensaje.fecha_de_envio}}</small>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ mensaje.cuerpo }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="{% url 'responder_mensaje' mensaje.id %}" class="btn btn-outline-primary btn-sm">Responder</a>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="alert alert-info" role="alert">
+                    No tienes mensajes aún.
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

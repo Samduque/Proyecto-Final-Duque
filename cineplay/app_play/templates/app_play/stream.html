@@ -5,44 +5,64 @@
 Cineplay | Stream
 {% endblock %}
 
-{% block content %} 
+{% block content %}
 
-    <h1 class="text-center my-4">Streaming</h1>
+<h1 class="text-center my-4">Streams</h1>
 
-
-<h2 class="text-center mt-2">Buscar stream</h2>
-<!-- Formulario de búsqueda -->
+{% if user.is_authenticated %}
 <div class="d-flex justify-content-center mb-4">
-    <form method="GET" action="{% url 'stream' %}">
-        <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Buscar stream...">
-        <button type="submit">Buscar</button>
+    <form method="GET" action="{% url 'stream' %}" class="d-flex">
+        <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Buscar por nombre...">
+        <button type="submit" class="btn btn-dark  ms-2 px-3">Buscar</button>
     </form>
 </div>
+{% endif %}
 
 
 {% if streaming %}
 <div class="container">
-    <!-- Hacemos la tabla responsiva -->
+
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover table-sm text-center">
             <thead class="table-dark">
                 <tr>
                     <th>Nombre</th>
                     <th>URL</th>
+                    <th>Precio</th>
+                    {% if user.is_authenticated %}
+                    <th>Acciones</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
                 {% for stream in streaming %}
-                <tr class="table-secondary">
+                <tr class="table-warning">
                     <td>{{ stream.nombre }}</td>
                     <td>{{ stream.url }}</td>
+                    <td>{{ stream.precio }}</td>
+                    {% if user.is_authenticated %}
+                    <td style="white-space: nowrap;">
+
+                            {% if user.is_superuser %}
+                            <a href="{% url 'eliminar_stream' stream.id %}" class="btn btn-outline-danger btn-sm me-2"
+                            onclick="return confirm('¿Estás seguro de que quieres eliminar este stream?');">Eliminar</a>
+                            <a class="btn btn-outline-success btn-sm me-2"
+                            href="{% url 'editar_stream' stream.id %}">Editar</a>
+                            {% endif %}
+                        <a class="btn btn-outline-info btn-sm me-2" href="{% url 'detalle_stream' stream.id %}">Ver
+                            Stream</a>
+                    </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+    {% if user.is_superuser %}
+    <a class="btn btn-primary" href="{% url 'stream_formulario' %}">Agregar Stream</a>
+    {% endif %}
 </div>
 {% else %}
 <p class="text-center">No se encontraron streaming.</p>
 {% endif %}
-{% endblock  %}
+{% endblock %}

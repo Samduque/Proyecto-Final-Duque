@@ -309,10 +309,21 @@ svg {
   vertical-align: middle;
 }
 
-table {
-  caption-side: bottom;
-  border-collapse: collapse;
+.action-buttons a {
+  display: inline-block;
+  margin: 2px;
+  padding: 4px 8px;
+  font-size: 12px;
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+  border-radius: 4px;
 }
+
+.action-buttons a:hover {
+  background-color: #0056b3;
+}
+
 
 caption {
   padding-top: 0.5rem;

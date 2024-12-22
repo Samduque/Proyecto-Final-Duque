@@ -1,0 +1,51 @@
+{% extends 'app_play/base.html' %}
+{% load static %}
+
+{% block title %} 
+Cineplay | Iniciar Sesión
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show alert-sm position-fixed top-0 end-0 mt-5 me-3 z-index-1050" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">Iniciar Sesión</h3>
+                    
+                    <form action="" method="POST" novalidate>
+                        {% csrf_token %}
+
+                        
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nombre de Usuario</label>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Nombre de Usuario" required>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+                        </div>
+
+                        
+                        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

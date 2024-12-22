@@ -1,0 +1,50 @@
+{% extends "app_play/base.html" %}
+{% load static %}
+
+{% block title %}
+Cineplay | Enviar Mensaje 💬
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Enviar Mensaje</h2>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="destinatario" class="form-label">Destinatario</label>
+                            <select id="destinatario" name="destinatario" class="form-select" required>
+                                <option value="" disabled selected>Selecciona un usuario</option>
+                                {% for usuario in usuarios %}
+                                <option value="{{ usuario.username }}">{{ usuario.username }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="asunto" class="form-label">Asunto</label>
+                            <input type="text" id="asunto" name="asunto" class="form-control" placeholder="Escribe el asunto" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cuerpo" class="form-label">Mensaje</label>
+                            <textarea id="cuerpo" name="cuerpo" class="form-control" rows="4" placeholder="Escribe tu mensaje aquí" required></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary w-100">Enviar Mensaje</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

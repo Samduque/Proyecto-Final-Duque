@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Pelicula, Serie, Stream
+from .models import Pelicula, Serie, Stream, Perfil
 
-# Register your models here.
 admin.site.register(Pelicula)
 admin.site.register(Serie)
 admin.site.register(Stream)
+admin.site.register(Perfil)

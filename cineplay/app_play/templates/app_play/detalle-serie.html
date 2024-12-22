@@ -1,0 +1,47 @@
+{% extends "app_play/base.html" %}
+{% load static %}
+
+{% block title %}
+Cineplay | Detalle Serie
+{% endblock %}
+
+{% block content %}
+<h1 class="text-primary text-center my-4">{{ serie.titulo }}</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            
+            {% if serie.portada %}
+            <img src="{{ serie.portada.url }}" alt="{{ serie.titulo }} portada" class="img-fluid rounded shadow">
+            {% else %}
+            <img src="{{ MEDIA_URL }}portadas/default_portada.jpg" alt="Portada predeterminada"
+                class="img-fluid rounded shadow">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            
+            
+            <div class="mb-3">
+            
+            <h4>{{ serie.puntuacion }} ⭐</h4>
+            <p>{{ serie.genero }}</p>
+            <p><strong>Cantidad de temporadas:</strong> {{ serie.temporadas }}</p>
+            <p><strong>Disponible en:</strong> {{ serie.stream.nombre }}</p>
+
+            <div class="mt-4">
+                <h4>Sinopsis:</h4>
+                <p>{{ serie.sinopsis|linebreaksbr  }}</p>
+            </div>
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="mt-4">
+            <a href="{% url 'series' %}" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</div>
+
+{% endblock %}

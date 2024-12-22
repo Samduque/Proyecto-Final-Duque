@@ -1,0 +1,60 @@
+{% extends "app_play/base.html" %}
+{% load static %}
+
+{% block title %}
+Cineplay | Top 5 🎥
+{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center my-4">⭐ Top 5 Mejores Películas y Series ⭐</h1>
+
+<div class="row justify-content-center">
+    
+    <div class="col-md-5 m-2">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white text-center">
+                <h3>🎬 Top 5 Películas</h3>
+            </div>
+            <div class="card-body">
+                {% if top_peliculas %}
+                <ul class="list-group">
+                    {% for pelicula in top_peliculas %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>{{ forloop.counter }}. {{ pelicula.titulo }}</span>
+                        <span class="badge bg-warning text-dark">{{ pelicula.puntuacion }} ⭐</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="text-center text-muted">No hay películas disponibles.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-5 m-2">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white text-center">
+                <h3>📺 Top 5 Series</h3>
+            </div>
+            <div class="card-body">
+                {% if top_series %}
+                <ul class="list-group">
+                    {% for serie in top_series %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>{{ forloop.counter }}. {{ serie.titulo }}</span>
+                        <span class="badge bg-warning text-dark">{{ serie.puntuacion }} ⭐</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="text-center text-muted">No hay series disponibles.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

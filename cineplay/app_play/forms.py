@@ -1,26 +1,39 @@
 from django import forms
+from django.contrib.auth.models import User
 
-from .models import Stream
+from .models import Perfil, Stream, Pelicula, Serie
 
 
-class PeliculaFormulario(forms.Form):
-    titulo = forms.CharField(label='Pelicula', max_length=100)
-    director = forms.CharField(label='Director', max_length=100)
-    genero = forms.CharField(label='Genero', max_length=100)
-    año = forms.IntegerField(label='Año', min_value=1900)
-    vistas = forms.IntegerField(label='Vistas', min_value=0)
-    stream = forms.ModelChoiceField(queryset=Stream.objects.all(), label='Stream')
+class UsuarioEditFormulario(forms.ModelForm):
     
-class SerieFormulario(forms.Form):
-    titulo = forms.CharField(label='Serie', max_length=100)
-    genero = forms.CharField(label='Genero', max_length=100)
-    temporadas = forms.IntegerField(label='Temporadas', min_value=1)
-    vistas = forms.IntegerField(label='Vistas', min_value=0)
-    stream = forms.ModelChoiceField(queryset=Stream.objects.all(), label='Stream')    
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+        
+class PerfilDeUsuarioFormulario(forms.ModelForm):
+    
+    class Meta:
+        model = Perfil
+        fields = ['photo']        
+
+class PeliculaFormulario(forms.ModelForm):
+    class Meta:
+        model = Pelicula
+        fields = ['titulo', 'director', 'puntuacion', 'duracion', 'genero', 'estreno', 'portada', 'stream', 'sinopsis']
+        
+    portada = forms.ImageField(required=False)     
     
     
-class StreamFormulario(forms.Form):
-    nombre = forms.CharField(label='nombre', max_length=100)
-    url = forms.URLField(label='Url', max_length=100)
+class SerieFormulario(forms.ModelForm):
+    
+    class Meta:
+        model = Serie
+        fields = ['titulo', 'puntuacion', 'genero', 'temporadas', 'portada', 'stream', 'sinopsis']
+    
+class StreamFormulario(forms.ModelForm):
+    
+    class Meta:
+        model = Stream
+        fields = ['nombre', 'url','portada', 'precio']
     
     

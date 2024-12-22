@@ -1,0 +1,50 @@
+{% extends "app_play/base.html" %}
+{% load static %}
+
+{% block title %}
+Cineplay | Detalle Película
+{% endblock %}
+
+{% block content %}
+<h1 class="text-primary text-center my-4">{{ pelicula.titulo }}</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            
+            {% if pelicula.portada %}
+            <img src="{{ pelicula.portada.url }}" alt="{{ pelicula.titulo }} portada" class="img-fluid rounded shadow">
+            {% else %}
+            <img src="{{ MEDIA_URL }}portadas/default_portada.jpg" alt="Portada predeterminada"
+                class="img-fluid rounded shadow">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            
+            <div class="mb-3">
+                <h4>{{ pelicula.director }}</h4>
+
+            </div>
+            <div class="mb-3">
+            <h4>{{ pelicula.puntuacion }} ⭐</h4>
+            <h6>{{ pelicula.duracion }}</h6>
+            <p>{{ pelicula.genero }}</p>
+            <p><strong>Estreno en Argentina:</strong> {{ pelicula.estreno }}</p>
+            <p><strong>Disponible en:</strong> {{ pelicula.stream.nombre }}</p>
+
+            <div class="mt-4">
+                <h4>Sinopsis:</h4>
+                <p>{{ pelicula.sinopsis|linebreaksbr }}</p>
+            </div>
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="mt-4">
+            <a href="{% url 'peliculas' %}" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</div>
+
+{% endblock %}
